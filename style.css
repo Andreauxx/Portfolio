@@ -33,6 +33,34 @@
 }
 
 
+.portfolio-link {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    background-color: rgba(234, 84, 69, 0.1); /* subtle red background */
+    border: 2px dashed var(--main-color);
+    padding: 12px 20px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-link a {
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .portfolio-link:hover {
+    background-color: rgba(234, 84, 69, 0.2);
+    transform: scale(1.03);
+  }
+  
+
 .theme-toggle {
     cursor: pointer;
     font-size: 30px;
