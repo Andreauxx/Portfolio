@@ -1,0 +1,849 @@
+/* ---------------------------------------------------------
+   BASE RESET
+--------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Jost", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0b0b0c;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------
+   COLOR VARIABLES
+--------------------------------------------------------- */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --accent: #ea5445;
+    --text-light: #cfcfcf;
+    --bg-dark: #0b0b0c;
+    --bg-card: rgba(255, 255, 255, 0.04);
+}
+
+/* ---------------------------------------------------------
+   BLURRED GLOW BLOBS (Background)
+--------------------------------------------------------- */
+.bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.35;
+    z-index: -1;
+}
+
+.blob-one {
+    width: 450px;
+    height: 450px;
+    background: #ea5445;
+    top: -120px;
+    left: -120px;
+}
+
+.blob-two {
+    width: 380px;
+    height: 380px;
+    background: #005eff;
+    bottom: -150px;
+    right: -100px;
+}
+
+.blob-three {
+    width: 300px;
+    height: 300px;
+    background: #9c27b0;
+    top: 40%;
+    left: 70%;
+}
+
+/* ---------------------------------------------------------
+   GLASS CARD
+--------------------------------------------------------- */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    transition: 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------------------------------------------------------
+   HEADER & NAV
+--------------------------------------------------------- */
+/* Sleek Modern Navbar */
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  padding: 22px 10%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navlist {
+  display: flex;
+  gap: 32px;
+}
+
+.navlist a {
+  color: #bfbfbf;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.navlist a:hover {
+  color: #fff;
+}
+
+.navlist a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: 0.35s ease;
+}
+
+.navlist a:hover::after {
+  width: 100%;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-button {
+  padding: 9px 18px;
+  font-size: 14px;
+  border-radius: 20px;
+  background: var(--accent);
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.nav-button:hover {
+  opacity: 0.85;
+}
+
+/* Mobile Menu */
+#menu-icon {
+  display: none;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+/* Mobile Navigation */
+@media (max-width: 900px) {
+  #menu-icon {
+    display: block;
+  }
+
+  .navlist {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 70%;
+    height: 100vh;
+    padding-top: 130px;
+    flex-direction: column;
+    gap: 28px;
+    background: rgba(20, 20, 20, 0.75);
+    backdrop-filter: blur(25px);
+    transition: 0.5s ease;
+  }
+
+  .navlist.open {
+    right: 0;
+  }
+}
+
+
+/* -------------------------
+   MOBILE APP PROJECT FRAME
+-------------------------- */
+/* ---------------------------------------------------------
+   PREMIUM IPHONE FRAME + 3D TILT ANIMATION
+--------------------------------------------------------- */
+
+.mobile-frame {
+    width: 100%;
+    max-width: 330px;
+    height: 650px;
+    margin: 0 auto 25px;
+    padding: 22px;
+
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border-radius: 42px;
+
+    border: 4px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        0 0 0 6px rgba(255, 255, 255, 0.05),
+        0 15px 45px rgba(0, 0, 0, 0.65),
+        inset 0 0 25px rgba(255, 255, 255, 0.05);
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform-style: preserve-3d;
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* 3D TILT ON HOVER */
+.mobile-frame:hover {
+    transform: perspective(1000px) rotateX(8deg) rotateY(8deg) scale(1.03);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+/* GLASS REFLECTION */
+.mobile-frame::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    left: -80px;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+/* SIDE BUTTONS */
+.mobile-frame::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 120px;
+    width: 4px;
+    height: 80px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    box-shadow:
+        0 30px 0 rgba(255,255,255,0.2),
+        0 -30px 0 rgba(255,255,255,0.2);
+}
+
+/* NOTCH */
+.mobile-notch {
+    width: 160px;
+    height: 32px;
+    background: #000;
+    border-radius: 0 0 24px 24px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* SCREEN */
+.mobile-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* APP IMAGE */
+.mobile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------------------------------------------------------
+   HERO SECTION
+--------------------------------------------------------- */
+.main-content {
+    display: flex;
+    padding: 150px 10% 100px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    min-height: 100vh;
+}
+
+.hero-left {
+    flex: 1.2;
+}
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.hero-pill .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.hero-title {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.hero-title span {
+    color: var(--accent);
+}
+
+.hero-subtitle {
+    max-width: 520px;
+    margin-bottom: 25px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 30px;
+}
+
+.primary-btn {
+    background: var(--accent);
+    color: #fff;
+}
+
+.ghost-btn {
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+}
+
+.ghost-btn:hover {
+    border-color: #fff;
+}
+
+.hero-socials {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.hero-socials i {
+    font-size: 24px;
+    color: var(--text-light);
+    transition: 0.3s ease;
+}
+
+.hero-socials i:hover {
+    color: var(--accent);
+}
+
+/* Profile Card */
+.hero-card {
+    width: 330px;
+    text-align: center;
+}
+
+.hero-avatar img {
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-meta {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat h3 {
+    color: #fff;
+}
+
+.stat p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* ---------------------------------------------------------
+   SECTION HEADERS
+--------------------------------------------------------- */
+section {
+    padding: 120px 10% 80px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-tag {
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.section-header h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    max-width: 600px;
+    margin: auto;
+    color: var(--text-light);
+}
+
+/* ---------------------------------------------------------
+   ABOUT SECTION
+--------------------------------------------------------- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.about-text h3,
+.about-extra h3 {
+    margin-bottom: 10px;
+}
+
+.about-extra ul li {
+    margin-bottom: 8px;
+}
+
+.about-extra span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   SKILLS GRID
+--------------------------------------------------------- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.skill-card h3 {
+    margin-bottom: 8px;
+}
+
+.skill-chips {
+    margin-top: 12px;
+}
+
+.skill-chips span {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.07);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    margin: 4px;
+}
+
+/* ---------------------------------------------------------
+   PROJECTS SECTION
+--------------------------------------------------------- */
+
+
+/* 3-column layout:
+   Durain (tall) | OS top + Gym bottom | Memorix (tall)
+*/
+.featured-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* each row height; adjust if you want taller/shorter */
+  grid-auto-rows: minmax(260px, auto);
+  gap: 35px;
+  margin-bottom: 60px;
+}
+
+/* tall cards on sides span 2 rows */
+.tall-card {
+  grid-row: 1 / span 2;
+}
+
+/* explicit placement */
+.left-card {
+  grid-column: 1;
+}
+
+.right-card {
+  grid-column: 3;
+}
+
+.mid-top {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mid-bottom {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* keep project cards flex so content aligns nicely */
+.featured-3col .project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+/* Project Images */
+.project-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Subsection Title */
+.subsection-title {
+    margin: 40px 0 20px;
+    font-size: 26px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+
+.project-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.projects-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.project-card.featured {
+    border: 1px solid var(--accent);
+}
+
+.project-tag {
+    color: var(--accent);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.project-highlights li {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+.project-meta {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.other-projects {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* ---------------------------------------------------------
+   EXPERIENCE SECTION
+--------------------------------------------------------- */
+.experience-timeline {
+    display: grid;
+    gap: 25px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.exp-meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.exp-item ul li {
+    margin-left: 20px;
+    font-size: 15px;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+
+/* ---------------------------------------------------------
+   CONTACT SECTION
+--------------------------------------------------------- */
+/* Contact Section */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.glass-contact {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 35px;
+  position: relative;
+  transition: 0.35s ease;
+}
+
+.glass-contact:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.contact-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  padding: 12px 22px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 18px;
+  transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+  opacity: 0.85;
+}
+
+.contact-social-alt a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.contact-details li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #e8e8e8;
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  gap: 18px;
+}
+
+.social-icons a i {
+  font-size: 28px;
+  color: #bbb;
+  transition: 0.3s ease;
+}
+
+.social-icons a i:hover {
+  color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+footer {
+    text-align: center;
+    padding: 60px 0 40px;
+    color: var(--text-light);
+}
+
+footer span {
+    color: var(--accent);
+}
+
+footer .main-icons i {
+    font-size: 25px;
+    margin: 10px;
+    color: var(--text-light);
+    transition: 0.3s ease;
+}
+
+footer .main-icons i:hover {
+    color: var(--accent);
+}
+
+/* ---------------------------------------------------------
+   FADE-IN ANIMATIONS
+--------------------------------------------------------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE DESIGN
+--------------------------------------------------------- */
+@media (max-width: 1100px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 850px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .navlist {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        backdrop-filter: blur(25px);
+        background: rgba(20, 20, 20, 0.75);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 120px;
+        transition: 0.5s ease;
+    }
+
+    .navlist.open {
+        right: 0;
+    }
+
+    .main-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 180px;
+    }
+
+    .hero-right {
+        order: -1;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
